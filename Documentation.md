@@ -1,6 +1,6 @@
-# Mapbox_et_3D
+[<img width="400" alt="Mapbox" src="https://raw.githubusercontent.com/mapbox/mapbox-gl-js-docs/publisher-production/docs/pages/assets/logo.png">](https://www.mapbox.com/)
 
-Exploration des possibilités de visualisation "3D" (2.5D avec extrusion) dans [©Mapbox](https://www.mapbox.com/)
+### Exploration des possibilités de visualisation "3D" (2.5D avec extrusion) dans [©Mapbox](https://www.mapbox.com/)
 
 # Bibliographie 
 ### Documentation générale
