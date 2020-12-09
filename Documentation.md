@@ -13,6 +13,8 @@ Exploration des possibilités de visualisation "3D" (2.5D avec extrusion) dans [
 
 #### Mapbox GL JS
 
+Mapbox GL JS est une librairie JavaScript basée sur WebGL pour produire des rendus cartographiques interactifs à partir de tuiles vectorielles et/ ou de styles Mapbox.
+
 * Présentation de Mabpox GL sur le Wiki OpenStreetMap: https://wiki.openstreetmap.org/wiki/Mapbox_GL
 * Documentation Mapbox GL JS: https://docs.mapbox.com/mapbox-gl-js/api/
 * Vidéo explicative - ajout de données 3D dans Mapbox: https://docs.mapbox.com/help/tutorials/add-3d-buildings-studio-data-driven-styling-video/ 
@@ -22,7 +24,9 @@ Exploration des possibilités de visualisation "3D" (2.5D avec extrusion) dans [
 
 #### Mapbox Studio 
 
-* Extrusion depuis [©Mapbox Studio](https://studio.mapbox.com/) : https://docs.mapbox.com/studio-manual/examples/3d-buildings/
+[©Mapbox Studio](https://www.mapbox.com/mapbox-studio/) est une application de Mapbox qui permet de gérer ses données géospatiales et de concevoir des styles de cartes personnalisés.
+
+* Extrusion depuis Mapbox Studio : https://docs.mapbox.com/studio-manual/examples/3d-buildings/
 
 ### Références
 
