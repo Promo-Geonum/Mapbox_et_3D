@@ -12,6 +12,7 @@ Exploration des possibilités de visualisation "3D" (2.5D avec extrusion) dans [
 ### Documentation technique (Mapbo GL - 3D)
 
 * Présentation de Mabpox GL sur le Wiki OpenStreetMap: https://wiki.openstreetmap.org/wiki/Mapbox_GL
+* Documentation Mapbox GL JS: https://docs.mapbox.com/mapbox-gl-js/api/
 * Vidéo explicative - ajout de données 3D dans Mapbox: https://docs.mapbox.com/help/tutorials/add-3d-buildings-studio-data-driven-styling-video/ 
 * Code pour extrusion des bâtiments dans Mapbox (2.5D): https://docs.mapbox.com/mapbox-gl-js/example/3d-buildings/
 * Code d'ajout d'un MNT dans Mapbox: https://docs.mapbox.com/mapbox-gl-js/example/add-terrain/
