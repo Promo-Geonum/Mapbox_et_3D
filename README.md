@@ -2,7 +2,7 @@
 
 Exploration des possibilités de visualisation "3D" (2.5D avec extrusion) dans [©Mapbox](https://www.mapbox.com/)
 
-# Bibliogrpahie 
+# Bibliographie 
 ### Documentation générale
 
 * Documentation mapbox: https://docs.mapbox.com/ 
