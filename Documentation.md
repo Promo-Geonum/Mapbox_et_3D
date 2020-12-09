@@ -1,6 +1,30 @@
 [<img width="400" alt="Mapbox" src="https://raw.githubusercontent.com/mapbox/mapbox-gl-js-docs/publisher-production/docs/pages/assets/logo.png">](https://www.mapbox.com/)
 
-### Exploration des possibilités de visualisation "3D" (2.5D avec extrusion) dans [©Mapbox](https://www.mapbox.com/)
+### Exploration des possibilités de visualisation '3D' avec [©Mapbox](https://www.mapbox.com/)
+
+L'idée de ce projet est de faire un tour d'horizon des possibilités proposées par mapbox en terme de visualisation et de gestion de données 3D. Vous y retrouverez: 
+* un **tutoriel** simplifié pour visualiser et mettre en valeur des données du bâti lyonnais en 3D (2.5D avec extrusion), en se concentrant sur la thématique des toitures lyonnaises 
+* une **bibliographie** des ressources sur le sujet
+
+# Tutoriel
+
+## En utilisant Mapbox GL JS
+
+### Choix des données 
+
+### Extrusion du bâti
+
+### Personnalisation du style 
+
+### Gestion de la caméra 
+
+### Ciel (mon mari !)
+
+### MNT ?
+
+## En utilisant Mapbox Studio
+
+L
 
 # Bibliographie 
 ### Documentation générale
