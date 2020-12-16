@@ -10,7 +10,14 @@ L'idée de ce projet est de faire un tour d'horizon des possibilités proposées
 
 ## En utilisant Mapbox GL JS
 
+_Licence_: 
+
 ### Choix des données 
+
+Toutes les données utilisées sont issues de [Data Grand Lyon](https://data.grandlyon.com/) en format flux WMS/WFS: 
+
+* Bâtiments: https://data.grandlyon.com/jeux-de-donnees/batiments-metropole-lyon/donnees
+* Arbres d'alignement: https://data.grandlyon.com/jeux-de-donnees/arbres-alignement-metropole-lyon/donnees
 
 ### Extrusion du bâti
 
@@ -20,9 +27,13 @@ L'idée de ce projet est de faire un tour d'horizon des possibilités proposées
 
 ### Ciel (mon mari !)
 
-### MNT ?
+### MNT
+
+* Modèle Numérique de Terrain à 5mètres de précision: 
 
 ## En utilisant Mapbox Studio
+
+_Licence_: 
 
 
 # Bibliographie 
