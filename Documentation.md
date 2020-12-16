@@ -45,6 +45,12 @@ Pour accéder à Mapbox Studio il est nécessaire de créer un compte, plusieurs
 
 _Licence_: 
 
+### Intégration de données 
+
+(image du processus upload - dataset - tileset etc)
+
+* `dataset`: collection de données brutes au format GeoJSON, éditables (pour des données trop lourdes il faut passer par [l'API Datasets](https://docs.mapbox.com/api/maps/uploads/)) 
+* `tileset`: collection de données (datasets) découpées en une grille uniforme de tuiles de données de même taille pour être gérées par Mapbox
 
 # Bibliographie 
 ### Documentation générale
