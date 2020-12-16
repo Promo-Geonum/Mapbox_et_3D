@@ -50,7 +50,27 @@ _Licence_:
 (image du processus upload - dataset - tileset etc)
 
 * `dataset`: collection de données brutes au format GeoJSON, éditables (pour des données trop lourdes il faut passer par [l'API Datasets](https://docs.mapbox.com/api/maps/uploads/)) 
-* `tileset`: collection de données (datasets) découpées en une grille uniforme de tuiles de données de même taille pour être gérées par Mapbox
+* [`tileset`](https://docs.mapbox.com/studio-manual/reference/tilesets/): collection de données (datasets) découpées en une grille uniforme de tuiles de données de même taille pour être gérées par Mapbox (avec une limite de 20 uploads / mois et 300 MB / upload)
+
+Si vous n'avez pas besoin de modifier vos données, téléchargez-les directement en dans un `tileset`
+
+### Personnaliser votre tileset dans Studio 
+
+Ajouter votre tileset: 
+> Add new layer > Select data > **Source** > Sélectionner votre tileset (ici le bâti ajouté précédemment)
+
+**Géométrie** de votre tileset (ici extrusion 2.5D):  
+> Add new layer > Select data > **Type** > Fill extrusion 
+
+
+**Style** de la couche bâti (tileset ici): 
+> Sélectionner votre couche > **Style**, plusieurs options s'offrent à vous: 
+  * Height : définir la hauetur des bâtiments 
+  * Color: modifier la couleur de vos bâtiments 
+
+Tous ces paramètres peuvent tenir compte d'expression en fonction de vos données  
+(EX: si vous avez des données de hauteur pour chaque bâtiment vous pouvez préciser cela dans _Style with data condition_) 
+
 
 # Bibliographie 
 ### Documentation générale
