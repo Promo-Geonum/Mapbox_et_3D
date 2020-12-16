@@ -1,6 +1,6 @@
 [<img width="400" alt="Mapbox" src="https://raw.githubusercontent.com/mapbox/mapbox-gl-js-docs/publisher-production/docs/pages/assets/logo.png">](https://www.mapbox.com/)
 
-### Exploration des possibilités de visualisation '3D' avec [©Mapbox](https://www.mapbox.com/)
+### Exploration des possibilités de visualisation 3D avec [©Mapbox](https://www.mapbox.com/)
 
 L'idée de ce projet est de faire un tour d'horizon des possibilités proposées par mapbox en terme de visualisation et de gestion de données 3D. Vous y retrouverez: 
 * un **tutoriel** simplifié pour visualiser et mettre en valeur des données du bâti lyonnais en 3D (2.5D avec extrusion), en se concentrant sur la thématique des toitures lyonnaises 
@@ -51,7 +51,6 @@ _Licence_:
 
 * Présentation de Mabpox GL sur le Wiki OpenStreetMap: https://wiki.openstreetmap.org/wiki/Mapbox_GL
 * Documentation Mapbox GL JS: https://docs.mapbox.com/mapbox-gl-js/api/
-* Vidéo explicative - ajout de données 3D dans Mapbox: https://docs.mapbox.com/help/tutorials/add-3d-buildings-studio-data-driven-styling-video/ 
 * Code pour extrusion des bâtiments dans Mapbox (2.5D): https://docs.mapbox.com/mapbox-gl-js/example/3d-buildings/
 * Code d'ajout d'un MNT dans Mapbox: https://docs.mapbox.com/mapbox-gl-js/example/add-terrain/
 * Indoor mapping: https://docs.mapbox.com/mapbox-gl-js/example/3d-extrusion-floorplan/
@@ -61,6 +60,7 @@ _Licence_:
 [©Mapbox Studio](https://www.mapbox.com/mapbox-studio/) est une application de Mapbox qui permet de gérer ses données géospatiales et de concevoir des styles de cartes personnalisés.
 
 * Extrusion depuis Mapbox Studio : https://docs.mapbox.com/studio-manual/examples/3d-buildings/
+* Vidéo explicative - ajout de données 3D dans Mapbox avec ©Studio: https://docs.mapbox.com/help/tutorials/add-3d-buildings-studio-data-driven-styling-video/ 
 
 ### Références
 
