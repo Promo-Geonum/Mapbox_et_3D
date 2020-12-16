@@ -24,7 +24,6 @@ L'idée de ce projet est de faire un tour d'horizon des possibilités proposées
 
 ## En utilisant Mapbox Studio
 
-L
 
 # Bibliographie 
 ### Documentation générale
