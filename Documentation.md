@@ -39,7 +39,8 @@ Toutes les données utilisées sont issues de [Data Grand Lyon](https://data.gra
 
 Pour accéder à Mapbox Studio il est nécessaire de créer un compte, plusieurs modalités existent: 
 * une version payante avec un tarif à la consommation
-* une version gratuite pour les étudiant.e.s notamment mais avec un nombre d'actions limitées
+* une version gratuite pour les étudiant.e.s notamment mais avec un nombre d'actions limitées (**200 000** requêtes de l'API Mapbox Static Tiles i.e. des tuiles matricielles statiques générées à partir d'un style basé sur Mapbox GL.)
+
 À la création du compte, un jetons d'accès [`access token`](https://docs.mapbox.com/help/how-mapbox-works/access-tokens/#how-access-tokens-work) sera créé afin de donner accès aux produits Mapbox en associant l'API de requêtes Mapbox à votre compte. C'est ce jeton d'accès sous la forme `pk.codepersonnalisé` qu'il faudra préciser dans le code de la `map` pour accéder aux ressource de l'API Mapbox.
 
 _Licence_: 
