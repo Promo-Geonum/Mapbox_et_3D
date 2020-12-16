@@ -45,7 +45,29 @@ Pour accéder à Mapbox Studio il est nécessaire de créer un compte, plusieurs
 
 _Licence_: 
 
-### Intégration de données 
+## Ce que propose Mapbox Studio 
+
+Certianes données appelées _Components_ sont disponibles de base dans le Studio, par exemple: 
+* limites administratives 
+* **bâtiments** 
+* utilisations du sol et l'eau 
+* élements naturels 
+* toponymes
+* points d'intérêt (avec le nom) 
+* réseau routier
+* imageries satellites
+* topographie (_Terrain_)
+* transports (aérien, ferroviaire, routier, cyclable)
+* multimodal: marche, vélo, etc
+
+### Personnaliser 
+
+Ajouter votre tileset: 
+> Add new layer
+
+
+## Utilisez vos propres données !
+#### Intégration de données 
 
 (image du processus upload - dataset - tileset etc)
 
@@ -93,6 +115,7 @@ Tous ces paramètres peuvent tenir compte d'expression en fonction de vos donné
 
 * Extrusion depuis Mapbox Studio : https://docs.mapbox.com/studio-manual/examples/3d-buildings/
 * Vidéo explicative - ajout de données 3D dans Mapbox avec ©Studio: https://docs.mapbox.com/help/tutorials/add-3d-buildings-studio-data-driven-styling-video/ 
+* Documentation sur l'extrusion dans Studio: https://docs.mapbox.com/mapbox-gl-js/style-spec/layers/#fill-extrusion
 
 ### Références
 
