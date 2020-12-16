@@ -10,6 +10,8 @@ L'idée de ce projet est de faire un tour d'horizon des possibilités proposées
 
 ## En utilisant Mapbox GL JS
 
+Mapbox GL JS est une librairie JavaScript basée sur WebGL pour produire des rendus cartographiques interactifs à partir de tuiles vectorielles et/ ou de styles Mapbox.
+
 _Licence_: 
 
 ### Choix des données 
@@ -46,8 +48,6 @@ _Licence_:
 ### Documentation technique 
 
 #### Mapbox GL JS
-
-Mapbox GL JS est une librairie JavaScript basée sur WebGL pour produire des rendus cartographiques interactifs à partir de tuiles vectorielles et/ ou de styles Mapbox.
 
 * Présentation de Mabpox GL sur le Wiki OpenStreetMap: https://wiki.openstreetmap.org/wiki/Mapbox_GL
 * Documentation Mapbox GL JS: https://docs.mapbox.com/mapbox-gl-js/api/
