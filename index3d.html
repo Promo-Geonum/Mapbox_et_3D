@@ -1,0 +1,195 @@
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Explorer la 3D avec Mapbox</title>
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+<script src="https://api.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.js"></script> <!-- lien vers le script Mapbox -->
+<link href="https://api.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.css" rel="stylesheet" /> <!-- lien vers le style par défaut de Mapbox -->
+<style>
+	body { margin: 0; padding: 0; }
+	#map { position: absolute; top: 0; bottom: 0; width: 100%; }
+
+	#fit {
+display: block;
+position: relative;
+margin: 0px auto;
+width: 50%;
+height: 40px;
+padding: 10px;
+border: none;
+border-radius: 3px;
+font-size: 12px;
+text-align: center;
+color: #fff;
+background: #ee8a65;
+}
+
+	#menu {
+width: 20%; margin-right: auto; margin-left: auto;
+z-index: 1; top: 10px; right: 10px; position: absolute;
+border-color: #FFFFFF; background-color: #808080 ;
+font-size: 12px; font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif; }
+
+	#menu a {
+		display: block; color: #FFFFFF; padding: 8px 16px;
+		text-align: center; font-weight: bold;
+		border-style: solid; border-color: #000000;}
+
+	#menu a.active { background-color: #CC6600;
+	color: #FFFFFF; }
+
+	#menu a:hover:not(.active) {
+		background-color: #CC6600;
+		color: #FFFFFF;
+	}
+
+</style>
+</head>
+<body>
+<div id="map"></div>
+<div id="menu"></div> 
+<button id="fit">Centrer sur Lyon</button> <!-- Bouton qui permettra à l'usager de centrer la carte sur Lyon -->
+
+<script>
+	mapboxgl.accessToken = 'pk.eyJ1Ijoicm1vbmFzc2llciIsImEiOiJja2loanQxNDEwODd5MnRtd2w0ODdwY2liIn0.mLuA9nocCcXaHnT3F18JGA'; // ajout de l'acess token personnel
+var map = new mapboxgl.Map({
+container: 'map', // container id
+style: 'mapbox://styles/rmonassier/ckja17ywj0mkk19mmmdf6l8c2', // style URL (des styles sont proposés dans la bibliothèque Mapbox, on peut aussi en créer depuis son compte personnel et générer l'url à insérer au code)
+center: [4.85, 45.75], // starting position [lng, lat]
+zoom: 9, // starting zoom
+pitch: 58 // inclinaison
+});
+
+//Ajout données personnelles au format tileset
+//Pour commencer, aller sur Mapbox studio - tilesets - new tileset
+//Glisser données au format shp zippé, geojson, csv, etc.
+
+//Ajout de la source
+map.on('load', function () {
+	map.addSource('topo', {
+		type: 'vector',
+		url: 'mapbox://rmonassier.bqxnr8oe' //ID du tileset à copier depuis mapbox
+});
+
+map.addLayer({
+	'id': 'topo',
+	'type': 'fill-extrusion', //format de données spécifiques à la 2,5 D
+	'source': 'topo',
+	'source-layer': 'Bati_Lyon_2019-7537lw', //nom du tileset à copier depuis mapbox
+	'paint': {
+		'fill-extrusion-color': 'white',
+		'fill-extrusion-opacity': 0.8,
+		'fill-extrusion-height': {'type': 'identity', 'property': 'HAUTEUR'}, //champ renseignant la hauteur des bâtiments dans la BD Topo
+		'fill-extrusion-base': 0
+	}
+});
+});
+
+//Ajout données d'association 
+map.on('load', function () {
+	map.addSource('asso', {
+		type: 'vector',
+		url: 'mapbox://rmonassier.2isg6jmz' //ID du tileset à copier depuis mapbox
+	})
+
+map.addLayer({
+	'id': 'asso',
+	'type': 'circle',
+	'source': 'asso',
+	'source-layer': 'asso_lyon4326-6zbyz2',
+	'paint': {
+		'circle-color': 'orange', 'circle-radius': 5
+	}
+});
+});
+
+//NB les différents types d'objet géo dans mapbox sont circle (point), symbol (point avec picto), line (ligne), fill (polygone), fill-extrusion (3D)
+
+//Ajout d'une source correspondant au MNT
+map.on('load', function () {
+	map.addSource('mapbox-dem', {
+		'type': 'raster-dem',
+		'url': 'mapbox://mapbox.mapbox-terrain-dem-v1',
+		'tileSize': 512,
+		'maxzoom': 14
+});
+
+//Ajouter la source MNT comme une couche "terrain" avec une hauteur exagérée
+map.setTerrain({ 'source': 'mapbox-dem', 'exaggeration': 1.5 });
+ 
+});
+
+//Ajout échelle
+map.addControl(
+	new mapboxgl.ScaleControl({
+		maxWidth: 120,
+		unit: 'metric'
+	}));
+
+// Interactivité CLICK
+// When a click event occurs on a feature in the places layer, open a popup at the
+// location of the feature, with titre HTML from its properties.
+map.on('click', 'asso', function (e) {
+var coordinates = e.features[0].geometry.coordinates.slice();
+var titre = e.features[0].properties.titre;
+ 
+// Ensure that if the map is zoomed out such that multiple
+// copies of the feature are visible, the popup appears
+// over the copy being pointed to.
+while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+}
+ 
+new mapboxgl.Popup()
+.setLngLat(coordinates)
+.setHTML(titre)
+.addTo(map);
+});
+ 
+// Change the cursor to a pointer when the mouse is over the asso layer.
+map.on('mouseenter', 'asso', function () {
+map.getCanvas().style.cursor = 'pointer';
+});
+ 
+// Change it back to a pointer when it leaves.
+map.on('mouseleave', 'asso', function () {
+map.getCanvas().style.cursor = '';
+});
+
+// Ajout d'un menu en 3 étapes
+// Configurer le style en CSS
+// Ajout du menu dans le HTML
+// Ajout du code suivant
+var toggleableLayerIds= ['topo', 'asso'];
+
+for (var i = 0; i < toggleableLayerIds.length; i++) {var id = toggleableLayerIds[i];
+
+	var link= document.createElement('a');
+	link.href= '#';link.className= 'inactive';
+	link.textContent= id;
+
+	link.onclick= function(e) {var clickedLayer= this.textContent;
+		e.preventDefault();
+		e.stopPropagation();
+		var visibility= map.getLayoutProperty(clickedLayer, 'visibility');
+		if (visibility=== 'visible') 
+			{map.setLayoutProperty(clickedLayer, 'visibility', 'none');this.className= '';} else{this.className= 'active';map.setLayoutProperty(clickedLayer, 'visibility', 'visible');} };
+
+	var layers= document.getElementById('menu');  layers.appendChild(link); }
+
+// Ajout boutons navigation a la fin du script
+var nav= new mapboxgl.NavigationControl();
+map.addControl(nav, 'top-left');
+
+//Fonction associée au bouton "fit" qui recentre la carte sur les coordonnées GPS indiquées (SW,NE)
+document.getElementById('fit').addEventListener('click', function () {
+map.fitBounds([
+[4.765890445703134,45.67601234031454],
+[4.9519713783203215,45.833713606002654]
+]);
+});
+
+</script>
+ 
+</body>
+</html>
