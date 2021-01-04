@@ -435,6 +435,13 @@ map.getCanvas().style.cursor = '';
 });
 ```
 
+### Naviguez sur la carte ! 
+
+Plusieurs options non spécifiées directement sur la carte sont disponibles grâce à des racourcis claviers: 
+
+* Rester appuyé sur **Shift** et **tracer un rectangle** sur la carte pour zoomer sur la zone tracée 
+* Rester appuyé sur **Ctrl** et **bouger le curseur** pour vous déplacer sur un axe horizontal à 360° et un axe vertical de haut en bas 
+
 ## En utilisant Mapbox Studio
 
 [©Mapbox Studio](https://www.mapbox.com/mapbox-studio/) est une application de Mapbox qui permet de gérer ses données géospatiales et de concevoir des styles de cartes personnalisés.
