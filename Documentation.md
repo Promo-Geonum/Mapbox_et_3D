@@ -134,6 +134,8 @@ map.addLayer({
 ```
 Ce code fait apparaître les bâtiments de la BD Topo en blanc, et procède à l'extrusion du bâti. Évidemment, celle-ci n'est visible qu'en inclinant la carte (paramètre ***pitch***). Le champ "HAUTEUR" est celui qui contient l'information de hauteur des bâtiments : il est donc renseigné dans le paramètre de style 'fill-extrusion-height'.
 
+Vous l'aurez compris, si l'extrusion peut servir à modéliser une ville - comme dans notre cas -, elle peut aussi servir à dresser des **cartes thématiques**. En effet, elle peut s'appliquer à **n'importe quelle couche de polygones**, si bien que l'on peut, par exemple, extruder des polygones à partir d'une autre variable que la hauteur.
+
 ### MNT
 
 La librairie GL JS rend possible l'ajout et la modélisation 3D d'un **modèle numérique de terrain**, via des fonctions dédiées. Il est possible :
