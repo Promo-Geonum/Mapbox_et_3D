@@ -521,7 +521,7 @@ Tous ces paramètres peuvent tenir compte d'expression en fonction de vos donné
 * Code pour extrusion des bâtiments dans Mapbox (2.5D): https://docs.mapbox.com/mapbox-gl-js/example/3d-buildings/
 * Code d'ajout d'un MNT dans Mapbox: https://docs.mapbox.com/mapbox-gl-js/example/add-terrain/
 * Indoor mapping: https://docs.mapbox.com/mapbox-gl-js/example/3d-extrusion-floorplan/
-* Ajout d'un ciel en fonction de la période de la journée: https://docs.mapbox.com/mapbox-gl-js/example/atmospheric-sky/ 
+* Ajout d'un ciel atmosphérique en fonction de la période de la journée: https://docs.mapbox.com/mapbox-gl-js/example/atmospheric-sky/ + https://docs.mapbox.com/mapbox-gl-js/style-spec/layers/#sky
 * Animer la caméra autours d'un point sur un terrain 3D: https://docs.mapbox.com/mapbox-gl-js/example/free-camera-point/
 
 #### Mapbox Studio 
