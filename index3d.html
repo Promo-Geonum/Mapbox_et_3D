@@ -10,22 +10,38 @@
 	#map { position: absolute; top: 0; bottom: 0; width: 100%; }
 
 	#fit {
-display: block;
-position: relative;
-margin: 0px auto;
-width: 50%;
-height: 40px;
-padding: 10px;
-border: none;
-border-radius: 3px;
-font-size: 12px;
-text-align: center;
-color: #fff;
-background: #ee8a65;
-}
+	display: block;
+	position: relative;
+	margin: 10px auto;
+	width: 10%;
+	height: 40px;
+	padding: 10px;
+	border: none;
+	border-radius: 3px;
+	font-size: 12px;
+	text-align: center;
+	color: #fff;
+	background: #ee8a65;
+	}
+	
+	#fly {
+	display: block;
+	position: relative;
+	margin: 10px auto;
+	width: 10%;
+	height: 40px;
+	padding: 10px;
+	border: none;
+	border-radius: 3px;
+	font-size: 12px;
+	text-align: center;
+	color: #fff;
+	background: #ee8a65;
+	}
+
 
 	#menu {
-width: 20%; margin-right: auto; margin-left: auto;
+width: 20%; margin-right: auto; margin-left: auto; margin-top: 60px;
 z-index: 1; top: 10px; right: 10px; position: absolute;
 border-color: #FFFFFF; background-color: #808080 ;
 font-size: 12px; font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif; }
@@ -43,12 +59,37 @@ font-size: 12px; font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif; }
 		color: #FFFFFF;
 	}
 
+	#ciel {
+	position: absolute;
+	top: 0;
+	left: 0;
+	padding: 10px;
+	margin-left: 40px;
+	}
+	
 </style>
 </head>
 <body>
 <div id="map"></div>
 <div id="menu"></div> 
 <button id="fit">Centrer sur Lyon</button> <!-- Bouton qui permettra à l'usager de centrer la carte sur Lyon -->
+<button id="fly">Survoler la ville</button> <!-- Bouton qui permettra de survoler la ville de points en points (random)-->
+	
+<div id="ciel">
+	<input type="button" id="sunriseEnd" value="sunrise" />
+	<input type="button" id="goldenHourEnd" value="morning" />
+	<input type="button" id="solarNoon" value="afternoon" />
+	<input type="button" id="goldenHour" value="evening" />
+	<input type="button" id="sunsetStart" value="sunset" />
+</div>
+
+<!-- script d'appel pour le ciel -->
+<script
+type="text/javascript"
+src="https://cdnjs.cloudflare.com/ajax/libs/suncalc/1.8.0/suncalc.min.js"
+></script>
+	
+	
 
 <script>
 	mapboxgl.accessToken = 'pk.eyJ1Ijoicm1vbmFzc2llciIsImEiOiJja2loanQxNDEwODd5MnRtd2w0ODdwY2liIn0.mLuA9nocCcXaHnT3F18JGA'; // ajout de l'acess token personnel
@@ -56,8 +97,8 @@ var map = new mapboxgl.Map({
 container: 'map', // container id
 style: 'mapbox://styles/rmonassier/ckja17ywj0mkk19mmmdf6l8c2', // style URL (des styles sont proposés dans la bibliothèque Mapbox, on peut aussi en créer depuis son compte personnel et générer l'url à insérer au code)
 center: [4.85, 45.75], // starting position [lng, lat]
-zoom: 9, // starting zoom
-pitch: 58 // inclinaison
+zoom: 11, // starting zoom
+pitch: 75 // inclinaison
 });
 
 //Ajout données personnelles au format tileset
@@ -112,12 +153,77 @@ map.on('load', function () {
 		'url': 'mapbox://mapbox.mapbox-terrain-dem-v1',
 		'tileSize': 512,
 		'maxzoom': 14
-});
+	});
 
-//Ajouter la source MNT comme une couche "terrain" avec une hauteur exagérée
-map.setTerrain({ 'source': 'mapbox-dem', 'exaggeration': 1.5 });
+	//Ajouter la source MNT comme une couche "terrain" avec une hauteur exagérée
+	map.setTerrain({ 'source': 'mapbox-dem', 'exaggeration': 1.5 });
  
+	//Ajouter le ciel  
+	map.addLayer({
+		'id': 'sky',
+		'type': 'sky',
+		'paint': {
+			'sky-opacity': [
+				'interpolate',
+				['linear'],
+				['zoom'],
+				0,
+				0,
+				5,
+				0.3,
+				8,
+				1
+			],
+			// set up the sky layer for atmospheric scattering
+			'sky-type': 'atmosphere',
+			// explicitly set the position of the sun rather than allowing the sun to be attached to the main light source
+			'sky-atmosphere-sun': getSunPosition(),
+			// set the intensity of the sun as a light source (0-100 with higher values corresponding to brighter skies)
+			'sky-atmosphere-sun-intensity': 5
+		}
+	});
+	
 });
+	
+// Fonctions de paramétrage du ciel
+	function updateSunPosition(sunPos) {
+	// update the `sky-atmosphere-sun` paint property with the position of the sun based on the selected time
+	// the position of the sun is calculated using the SunCalc library
+	map.setPaintProperty('sky', 'sky-atmosphere-sun', sunPos);
+	}
+	
+	// set up event listeners for the buttons to update
+	// the position of the sun for times of the day
+	var sunTimeLabels = [
+	'sunriseEnd',
+	'goldenHourEnd',
+	'solarNoon',
+	'goldenHour',
+	'sunsetStart'
+	];
+	var sunTimes = SunCalc.getTimes(
+	Date.now(),
+	map.getCenter().lat,
+	map.getCenter().lng
+	);
+	sunTimeLabels.forEach(function (btnId) {
+	document.getElementById(btnId).addEventListener('click', function () {
+	var sunPos = getSunPosition(sunTimes[btnId]);
+	updateSunPosition(sunPos);
+	});
+	});
+
+	function getSunPosition(date) {
+	var center = map.getCenter();
+	var sunPos = SunCalc.getPosition(
+	date || Date.now(),
+	center.lat,
+	center.lng
+	);
+	var sunAzimuth = 180 + (sunPos.azimuth * 180) / Math.PI;
+	var sunAltitude = 90 - (sunPos.altitude * 180) / Math.PI;
+	return [sunAzimuth, sunAltitude];
+	}
 
 //Ajout échelle
 map.addControl(
@@ -184,8 +290,8 @@ map.addControl(nav, 'top-left');
 //Fonction associée au bouton "fit" qui recentre la carte sur les coordonnées GPS indiquées (SW,NE)
 document.getElementById('fit').addEventListener('click', function () {
 map.fitBounds([
-[4.765890445703134,45.67601234031454],
-[4.9519713783203215,45.833713606002654]
+[4.741374, 45.71051],
+[4.937411, 45.80996]
 ]);
 });
 
