@@ -232,6 +232,7 @@ for (var i = 0; i < toggleableLayerIds.length; i++) {var id = toggleableLayerIds
  ```
  
 4. **Ajout d'un bouton qui recentre la carte sur des coordonnées spécifiées**
+
 En trois étapes également :
 * CSS :
 ```
@@ -268,6 +269,7 @@ map.fitBounds([
 ```
 
 5. **Ajout d'une fenêtre popup au click**
+
 Cette fonction permet l'affichage d'un attribut sémantique (champ "titre") au click sur une entité de la couche "layer".
 ```
 map.on('click', 'layer', function (e) {
