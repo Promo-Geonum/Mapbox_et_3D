@@ -162,7 +162,143 @@ Les 3 types génériques lus par Mapbox sont : *vector, raster, raster-dem*, ce 
 
 ### Gestion de la caméra
 
+De nombreuses possibilités sont offertes par Mapbox GL JS pour gérer le postionnement de la caméra afin de rendre plus visibles les données 3D. Les principales commandes sont proposées dans [CameraOptions](https://docs.mapbox.com/mapbox-gl-js/api/properties/#cameraoptions). 
+
+1. **Paramétrages de la vue initiale**
+
+Plutôt qu'une vue verticale sur la ville de Lyon, il est préférable d'incliner la caméra pour mieux visualiser les bâtiments extrudés mais aussi le ciel (cf. point suivant). Ces paramétrages initiaux se font dès la définition de la variable `map` dans le script JS: 
+
+```
+var map = new mapboxgl.Map({
+container: 'map', // container id
+style: 'mapbox://styles/rmonassier/ckja17ywj0mkk19mmmdf6l8c2', // style URL (des styles sont proposés dans la bibliothèque Mapbox, on peut aussi en créer depuis son compte personnel et générer l'url à insérer au code)
+center: [4.85, 45.75], // starting position [lng, lat]
+zoom: 11, // starting zoom
+pitch: 75, // inclinaison
+});
+```
+Et notamment les trois dernières options qui permettent respectivement de définir: 
+* `center` : le point central de la vue initiale en coordonnées long/lat (ici le centre de Lyon)
+* `zoom` : l'échelle de zoom
+* `pitch`: l'inclinaison de la vue en degrés (0 = une vue verticale comme une image satellite, 60 = une vue avec perspective sur l'horizon) 
+
+
+2. **Survol de la ville de Lyon**
+
+Il est possible d'animer la caméra afin de rendre la visualisation dynamique via des options gratuites. Ici, le survol de la ville de Lyon: 
+
+
 ### Ciel ! (mon mari)
+
+Cette visualiation spécifique en 3D permet de faire apparaitre un élément que l'on ne voit pas fréquemment sur des cartes généralement planes: le ciel ! 
+
+Dès lors il est possible d'appeler dans le code des scirps JS déjà existants qui proposent des visualisations pousées du ciel en fonction de la période de la journée par exemple. Cela se fait en 3 étapes: 
+
+* Configuration du style des boutons des différentes modalités de ciel (_sunrise_, _morning_, _afternoon_, _evening_, _sunset_) en CSS
+```
+	#ciel {
+		position: absolute;
+		top: 0;
+		left: 0;
+		padding: 10px;
+		margin-left: 40px;
+	}
+```
+
+* Création des boutons et appel du scrip .js à la fin du HTML 
+```
+<div id="ciel">
+	<input type="button" id="sunriseEnd" value="sunrise" />
+	<input type="button" id="goldenHourEnd" value="morning" />
+	<input type="button" id="solarNoon" value="afternoon" />
+	<input type="button" id="goldenHour" value="evening" />
+	<input type="button" id="sunsetStart" value="sunset" />
+</div>
+
+<!-- script d'appel pour le ciel -->
+<script
+type="text/javascript"
+src="https://cdnjs.cloudflare.com/ajax/libs/suncalc/1.8.0/suncalc.min.js"
+></script>
+<!-- script d'appel pour le ciel -->
+<script
+type="text/javascript"
+src="https://cdnjs.cloudflare.com/ajax/libs/suncalc/1.8.0/suncalc.min.js"
+></script>
+```
+
+* Ajout du code JS à la suite du paramétrage du MNT 
+```[...]
+	//Ajouter la source MNT comme une couche "terrain" avec une hauteur exagérée
+	map.setTerrain({ 'source': 'mapbox-dem', 'exaggeration': 1.5 });
+
+	//Ajouter le ciel  
+	map.addLayer({
+		'id': 'sky',
+		'type': 'sky',
+		'paint': {
+			'sky-opacity': [
+				'interpolate',
+				['linear'],
+				['zoom'],
+				0,
+				0,
+				5,
+				0.3,
+				8,
+				1
+			],
+			// set up the sky layer for atmospheric scattering
+			'sky-type': 'atmosphere',
+			// explicitly set the position of the sun rather than allowing the sun to be attached to the main light source
+			'sky-atmosphere-sun': getSunPosition(),
+			// set the intensity of the sun as a light source (0-100 with higher values corresponding to brighter skies)
+			'sky-atmosphere-sun-intensity': 5
+		}
+	});
+});
+```
+Et ajout des paramètres de la position du soleil en fonction du moment de la journée:
+```
+	function updateSunPosition(sunPos) {
+	// update the `sky-atmosphere-sun` paint property with the position of the sun based on the selected time
+	// the position of the sun is calculated using the SunCalc library
+	map.setPaintProperty('sky', 'sky-atmosphere-sun', sunPos);
+	}
+	
+	// set up event listeners for the buttons to update
+	// the position of the sun for times of the day
+	var sunTimeLabels = [
+	'sunriseEnd',
+	'goldenHourEnd',
+	'solarNoon',
+	'goldenHour',
+	'sunsetStart'
+	];
+	var sunTimes = SunCalc.getTimes(
+	Date.now(),
+	map.getCenter().lat,
+	map.getCenter().lng
+	);
+	sunTimeLabels.forEach(function (btnId) {
+	document.getElementById(btnId).addEventListener('click', function () {
+	var sunPos = getSunPosition(sunTimes[btnId]);
+	updateSunPosition(sunPos);
+	});
+	});
+
+	function getSunPosition(date) {
+	var center = map.getCenter();
+	var sunPos = SunCalc.getPosition(
+	date || Date.now(),
+	center.lat,
+	center.lng
+	);
+	var sunAzimuth = 180 + (sunPos.azimuth * 180) / Math.PI;
+	var sunAltitude = 90 - (sunPos.altitude * 180) / Math.PI;
+	return [sunAzimuth, sunAltitude];
+	}
+```
 
 ### Interactivité avec la carte, personnalisation
 
@@ -379,6 +515,7 @@ Tous ces paramètres peuvent tenir compte d'expression en fonction de vos donné
 * Code d'ajout d'un MNT dans Mapbox: https://docs.mapbox.com/mapbox-gl-js/example/add-terrain/
 * Indoor mapping: https://docs.mapbox.com/mapbox-gl-js/example/3d-extrusion-floorplan/
 * Ajout d'un ciel en fonction de la période de la journée: https://docs.mapbox.com/mapbox-gl-js/example/atmospheric-sky/ 
+* Animer la caméra autours d'un point sur un terrain 3D: https://docs.mapbox.com/mapbox-gl-js/example/free-camera-point/
 
 #### Mapbox Studio 
 
