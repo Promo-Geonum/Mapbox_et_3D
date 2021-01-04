@@ -20,7 +20,7 @@ L'idée de ce projet est de faire un tour d'horizon des possibilités proposées
 
 Les cartes qui mobilisent les fonds de plan, jeux de données ou librairies de Mapbox doivent déclarer une **attribution**. Cette déclaration est automatique dans le cas de l'emploi de Mapbox GL JS. 
 D'après les [termes d'utilisation](https://www.mapbox.com/legal/tos), l'utilisateur qui se crée un compte se voit attribuer une licence non-exclusive et non-transférable (et des clés d'accès), ainsi que le droit à :
-* user des services Mapbox pour développer des services en ligne, bureau et des applications mobiles ;
+* user des services Mapbox pour développer des services en ligne, applications bureautiques et mobiles ;
 * rendre les services disponibles à des utilisateurs finaux.
 Pour le reste, Mapbox (site et services) est propriété de Mapbox, Inc.
 
@@ -28,7 +28,7 @@ Chaque utilisateur conserve la propriété du contenu mobilisé via les services
 
 Mapbox peut être employé gratuitement **dans la limite de certains volumes** d'utilisation et de stockage de données. Mapbox tarife son utilisation d'après la [grille de prix suivante](https://www.mapbox.com/pricing/). 
 
-Un exemple des fonctionnalités proposées par Mapbox GL JS est disponible sur ce dépôt, à ce [lien](https://github.com/Promo-Geonum/Mapbox_et_3D/blob/main/index3d.html). En plus des annotations insérées au code, vous trouverez ci-contre les bouts de code associés à certaines fonctionnalités. Mapbox propose quelques fonctions ***en lien avec la 3D (ou 2,5D)*** - extrusion du bâti, application d'un relief, etc. - que nous avons explorées dans une carte web dynamique. Celle-ci explore le **bâti lyonnais placé dans son relief topographique**.
+Un exemple des fonctionnalités proposées par Mapbox GL JS est disponible sur ce dépôt, à ce [lien](https://github.com/Promo-Geonum/Mapbox_et_3D/blob/main/index3d.html). En plus des annotations insérées au code, vous trouverez ci-contre les bouts de code associés à certaines fonctionnalités. Mapbox propose quelques fonctions **en lien avec la 3D (ou 2,5D)** - extrusion du bâti, application d'un relief, etc. - que nous avons explorées dans une carte web dynamique. Celle-ci présente le **bâti lyonnais placé dans son relief topographique**.
 
 4. Utilisation : 
 
@@ -116,7 +116,7 @@ Dans Mapbox, les différents "types" d'entités vectorielles sont :
 
 ### Extrusion du bâti
 
-Comme indiqué plus haut, il existe un format spécifique aux données 3D : c'est le format **fill-extrusion**. Ce format est géré de façon semblable dans le code. Il requiert seulement la définition de quelques paramètres spécifiques. Dans notre cas, nous avons créer un tileset à partir de la couche bâtie de la **BD Topo de Lyon**, défini une source (cf supra), puis ajouter la couche :
+Comme indiqué plus haut, il existe un format spécifique aux données 3D : c'est le format **fill-extrusion**. Quant au code, ce format est géré de façon semblable aux autres formats vectoriels. Il requiert seulement la définition de quelques paramètres spécifiques. Dans notre cas, nous avons créé un tileset à partir de la couche bâtie de la **BD Topo de Lyon**, défini une source (cf supra), puis ajouté la couche :
 ```
 map.addLayer({
 	'id': 'topo',
@@ -166,7 +166,7 @@ Les 3 types génériques lus par Mapbox sont : *vector, raster, raster-dem*, ce 
 
 Nous renseignons ici quelques fonctionnalités bien utiles (voire requises) en cartographie web :
 
-1. Ajout de l'échelle
+1. **Ajout de l'échelle**
 ```
 map.addControl(
 	new mapboxgl.ScaleControl({
@@ -175,13 +175,13 @@ map.addControl(
 	}));
 ```
 
-2. Ajout d'un bouton navigation
+2. **Ajout d'un bouton navigation**
 ```
 var nav= new mapboxgl.NavigationControl();
 map.addControl(nav, 'top-left');
 ```
 
-3. Ajout d'un menu de couches
+3. **Ajout d'un menu de couches**
 
 En trois étapes :
 * Configurer le style du menu en CSS
@@ -231,7 +231,7 @@ for (var i = 0; i < toggleableLayerIds.length; i++) {var id = toggleableLayerIds
 	var layers= document.getElementById('menu');  layers.appendChild(link); }
  ```
  
-4. Ajout d'un bouton qui recentre la carte sur des coordonnées spécifiées
+4. **Ajout d'un bouton qui recentre la carte sur des coordonnées spécifiées**
 En trois étapes également :
 * CSS :
 ```
@@ -267,8 +267,8 @@ map.fitBounds([
 });
 ```
 
-5. Ajout d'une fenêtre popup au click
-Cette fonction permet l'affichage d'un attribut sémantique (champ "titre") au click sur une entité de la couche "layer" de la carte.
+5. **Ajout d'une fenêtre popup au click**
+Cette fonction permet l'affichage d'un attribut sémantique (champ "titre") au click sur une entité de la couche "layer".
 ```
 map.on('click', 'layer', function (e) {
 var coordinates = e.features[0].geometry.coordinates.slice();
