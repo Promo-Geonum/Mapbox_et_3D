@@ -2,6 +2,8 @@
 
 ### Exploration des possibilités de visualisation 3D avec [©Mapbox](https://www.mapbox.com/)
 
+Auteurs : Camille Scheffler, Romain Monassier
+
 L'idée de ce projet est de faire un tour d'horizon des possibilités proposées par mapbox en terme de visualisation et de gestion de données 3D. Vous y retrouverez: 
 * un **tutoriel** simplifié pour visualiser et mettre en valeur des données du bâti lyonnais en 3D (2.5D avec extrusion).
 * une **bibliographie** des ressources sur le sujet
