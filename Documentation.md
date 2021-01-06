@@ -16,6 +16,20 @@ L'idée de ce projet est de faire un tour d'horizon des possibilités proposées
 
 2. Mapbox Studio :
 
+[©Mapbox Studio](https://www.mapbox.com/mapbox-studio/) est une application de Mapbox qui permet de gérer ses données géospatiales et de concevoir des styles de cartes personnalisés.
+
+Pour accéder à Mapbox Studio il est nécessaire de créer un compte, plusieurs modalités existent: 
+* une version payante avec un tarif à la consommation
+* une version gratuite pour les étudiant.e.s notamment mais avec un nombre d'actions limitées (**200 000** requêtes de l'API Mapbox Static Tiles i.e. des tuiles matricielles statiques générées à partir d'un style basé sur Mapbox GL.)
+
+À la création du compte, un jetons d'accès [`access token`](https://docs.mapbox.com/help/how-mapbox-works/access-tokens/#how-access-tokens-work) sera créé afin de donner accès aux produits Mapbox en associant l'API de requêtes Mapbox à votre compte. C'est ce jeton d'accès sous la forme `pk.codepersonnalisé` qu'il faudra préciser dans le code de la `map` pour accéder aux ressource de l'API Mapbox.
+
+Plusieurs options de partage de ces cartes sont proposées directement depuis le Studio: 
+* sur le web via un URL 
+* en flux WMTS 
+* intégré sur iOS - Android - Unity 
+* intégré à d'autres logiciels comme ©[ArcGIS Online](https://www.esri.com/fr-fr/arcgis/products/arcgis-online/overview), ©[CARTO](https://carto.com/), ©[Tableau](https://public.tableau.com/fr-fr/s/)
+
 3. Licence :
 
 Les cartes qui mobilisent les fonds de plan, jeux de données ou librairies de Mapbox doivent déclarer une **attribution**. Cette déclaration est automatique dans le cas de l'emploi de Mapbox GL JS. 
@@ -33,6 +47,7 @@ Un exemple des fonctionnalités proposées par Mapbox GL JS est disponible sur c
 4. Utilisation : 
 
 Nous recommandons d'employer la librairie GL JS et Mapbox Studio **de façon conjointe**. Les deux fonctionnent bien ensemble, et permettent la création de cartes personnalisées assez simplement. La 3D est possible aussi bien dans GL JS que dans Mapbox Studio. Elle est cependant plus flexible en manipulant du code source.
+
 
 ### Mise en place de la carte
 
@@ -444,19 +459,9 @@ Plusieurs options non spécifiées directement sur la carte sont disponibles gr�
 
 ## En utilisant Mapbox Studio
 
-[©Mapbox Studio](https://www.mapbox.com/mapbox-studio/) est une application de Mapbox qui permet de gérer ses données géospatiales et de concevoir des styles de cartes personnalisés.
-
-Pour accéder à Mapbox Studio il est nécessaire de créer un compte, plusieurs modalités existent: 
-* une version payante avec un tarif à la consommation
-* une version gratuite pour les étudiant.e.s notamment mais avec un nombre d'actions limitées (**200 000** requêtes de l'API Mapbox Static Tiles i.e. des tuiles matricielles statiques générées à partir d'un style basé sur Mapbox GL.)
-
-À la création du compte, un jetons d'accès [`access token`](https://docs.mapbox.com/help/how-mapbox-works/access-tokens/#how-access-tokens-work) sera créé afin de donner accès aux produits Mapbox en associant l'API de requêtes Mapbox à votre compte. C'est ce jeton d'accès sous la forme `pk.codepersonnalisé` qu'il faudra préciser dans le code de la `map` pour accéder aux ressource de l'API Mapbox.
-
-_Licence_: 
-
 ## Ce que propose Mapbox Studio 
 
-Certianes données appelées _Components_ sont disponibles de base dans le Studio, par exemple: 
+Certaines données appelées _Components_ sont disponibles de base dans le Studio, par exemple: 
 * limites administratives 
 * **bâtiments** 
 * utilisations du sol et l'eau 
@@ -469,18 +474,9 @@ Certianes données appelées _Components_ sont disponibles de base dans le Studi
 * transports (aérien, ferroviaire, routier, cyclable)
 * multimodal: marche, vélo, etc
 
-### Connecter à QGis
-
-On peut ajouter un tileset à QGis comme une **couche WMTS**. Dans QGis :
-1. Add WMTS Layer
-2. Coller l'URL suivant en modifier username, URL du style, access token :
-https://api.mapbox.com/styles/v1/username/styleURL/wmts?access_token=id_accesstoken
-
-
-## Utilisez vos propres données !
 #### Intégration de données 
 
-(image du processus upload - dataset - tileset etc)
+Il est également possible d'utiliser ses propres données (dont le volume est plus au moins limité en focntion des crédits utilisateurs, cf. ci-dessus. Deux formats de données principaux sont proposés dans Mapbox Studio:
 
 * `dataset`: collection de données brutes au format GeoJSON, éditables (pour des données trop lourdes il faut passer par [l'API Datasets](https://docs.mapbox.com/api/maps/uploads/)) 
 * [`tileset`](https://docs.mapbox.com/studio-manual/reference/tilesets/): collection de données (datasets) découpées en une grille uniforme de tuiles de données de même taille pour être gérées par Mapbox (avec une limite de 20 uploads / mois et 300 MB / upload)
@@ -503,6 +499,13 @@ Ajouter votre tileset:
 
 Tous ces paramètres peuvent tenir compte d'expression en fonction de vos données  
 (EX: si vous avez des données de hauteur pour chaque bâtiment vous pouvez préciser cela dans _Style with data condition_) 
+
+### Connecter à QGis
+
+On peut ajouter un tileset à QGis comme une **couche WMTS**. Dans QGis :
+1. Add WMTS Layer
+2. Coller l'URL suivant en modifier username, URL du style, access token :
+https://api.mapbox.com/styles/v1/username/styleURL/wmts?access_token=id_accesstoken
 
 
 # Bibliographie 
