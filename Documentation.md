@@ -10,11 +10,11 @@ L'idée de ce projet est de faire un tour d'horizon des possibilités proposées
 
 ## Quelques informations de cadrage
 
-1. Mapbox GL JS :
+### 1. Mapbox GL JS :
 
 **Mapbox GL JS** est une librairie JavaScript basée sur WebGL pour produire des rendus cartographiques interactifs à partir de tuiles vectorielles et/ou de styles Mapbox.
 
-2. Mapbox Studio :
+### 2. Mapbox Studio :
 
 [©Mapbox Studio](https://www.mapbox.com/mapbox-studio/) est une application de Mapbox qui permet de gérer ses données géospatiales et de concevoir des styles de cartes personnalisés.
 
@@ -30,7 +30,7 @@ Plusieurs options de partage de ces cartes sont proposées directement depuis le
 * intégré sur iOS - Android - Unity 
 * intégré à d'autres logiciels comme ©[ArcGIS Online](https://www.esri.com/fr-fr/arcgis/products/arcgis-online/overview), ©[CARTO](https://carto.com/), ©[Tableau](https://public.tableau.com/fr-fr/s/)
 
-3. Licence :
+### 3. Licence :
 
 Les cartes qui mobilisent les fonds de plan, jeux de données ou librairies de Mapbox doivent déclarer une **attribution**. Cette déclaration est automatique dans le cas de l'emploi de Mapbox GL JS. 
 D'après les [termes d'utilisation](https://www.mapbox.com/legal/tos), l'utilisateur qui se crée un compte se voit attribuer une licence non-exclusive et non-transférable (et des clés d'accès), ainsi que le droit à :
@@ -473,6 +473,8 @@ Certaines données appelées _Components_ sont disponibles de base dans le Studi
 * topographie (_Terrain_)
 * transports (aérien, ferroviaire, routier, cyclable)
 * multimodal: marche, vélo, etc
+
+Il est posisble d'utiliser directement ces données et de les modifier pour créer des cartes, ou d'utiliser ses propres données.
 
 #### Intégration de données 
 
