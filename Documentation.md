@@ -179,7 +179,7 @@ Les 3 types génériques lus par Mapbox sont : *vector, raster, raster-dem*, ce 
 
 De nombreuses possibilités sont offertes par Mapbox GL JS pour gérer le postionnement de la caméra afin de rendre plus visibles les données 3D. Les principales commandes sont proposées dans [CameraOptions](https://docs.mapbox.com/mapbox-gl-js/api/properties/#cameraoptions). 
 
-1. **Paramétrages de la vue initiale**
+**Paramétrages de la vue initiale**
 
 Plutôt qu'une vue verticale sur la ville de Lyon, il est préférable d'incliner la caméra pour mieux visualiser les bâtiments extrudés mais aussi le ciel (cf. point suivant). Ces paramétrages initiaux se font dès la définition de la variable `map` dans le script JS: 
 
@@ -196,11 +196,6 @@ Et notamment les trois dernières options qui permettent respectivement de défi
 * `center` : le point central de la vue initiale en coordonnées long/lat (ici le centre de Lyon)
 * `zoom` : l'échelle de zoom
 * `pitch`: l'inclinaison de la vue en degrés (0 = une vue verticale comme une image satellite, 60 = une vue avec perspective sur l'horizon) 
-
-
-2. **Survol de la ville de Lyon**
-
-Il est possible d'animer la caméra afin de rendre la visualisation dynamique via des options gratuites. Ici, le survol de la ville de Lyon: 
 
 
 ### Ciel ! (mon mari)
