@@ -79,7 +79,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/suncalc/1.8.0/suncalc.min.js"
 	mapboxgl.accessToken = 'pk.eyJ1Ijoicm1vbmFzc2llciIsImEiOiJja2loanQxNDEwODd5MnRtd2w0ODdwY2liIn0.mLuA9nocCcXaHnT3F18JGA'; // ajout de l'acess token personnel
 var map = new mapboxgl.Map({
 container: 'map', // container id
-style: 'mapbox://styles/rmonassier/ckja17ywj0mkk19mmmdf6l8c2', // style URL (des styles sont proposés dans la bibliothèque Mapbox, on peut aussi en créer depuis son compte personnel et générer l'url à insérer au code)
+style: 'mapbox://styles/NOM_USER/URL_STYLE_MAPBOX', // style URL (des styles sont proposés dans la bibliothèque Mapbox, on peut aussi en créer depuis son compte personnel et générer l'url à insérer au code)
 center: [4.85, 45.75], // starting position [lng, lat]
 zoom: 11, // starting zoom
 pitch: 75 // inclinaison
@@ -93,7 +93,7 @@ pitch: 75 // inclinaison
 map.on('load', function () {
 	map.addSource('topo', {
 		type: 'vector',
-		url: 'mapbox://rmonassier.bqxnr8oe' //ID du tileset à copier depuis mapbox
+		url: 'mapbox://NOM_USER.CODE_TILESET' //ID du tileset à copier depuis mapbox
 });
 
 map.addLayer({
@@ -114,7 +114,7 @@ map.addLayer({
 map.on('load', function () {
 	map.addSource('asso', {
 		type: 'vector',
-		url: 'mapbox://rmonassier.2isg6jmz' //ID du tileset à copier depuis mapbox
+		url: 'mapbox://NOM_USER.CODE_TILESET' //ID du tileset à copier depuis mapbox
 	})
 
 map.addLayer({
